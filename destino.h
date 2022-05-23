@@ -44,3 +44,26 @@ int buscarDestino (eDestino destinos[],int tamD,int id,int* pIndice);
  */
 
 int listarDestinos (eDestino destinos[],int tamD);
+
+
+/** \brief pide al usuario que ingrese un ID destino valido
+ *
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+  * \param int* idDestino, puntero a entero donde se almacena el ID ingresado por el usuario
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int pedirDestino(eDestino destinos[],int tamD,int* idDestino);
+
+
+/** \brief carga en el parametro descripcion, el valor del campo descripcion del elemento del vector cuya id es igual a la pasada por parametro
+ *
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD,tamanio del vector de destinos
+ * \param int id, id del elemento que se quiere obtener su descripcion
+ * \param char descripcion[],cadena de caracteres donde se almacena el valor del campo descripcion
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int cargarDescripcionDestino (eDestino destinos[],int tamD,int id,char descripcion[]);

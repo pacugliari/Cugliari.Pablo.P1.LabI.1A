@@ -20,7 +20,7 @@ int inicializarMicros (eMicro micros[],int tamM){
 
 int hardcodearMicros (eMicro micros[],int tamM,int cantidad,int* pId){
     int todoOk = 0;
-    eMicro microsHard [] = {{10000,1001,5000,10,0},
+    eMicro microsHard [] = {{10000,1001,5000,100,0},
                           {10001,1002,5001,20,0},
                           {10002,1003,5002,30,0},
                           {10003,1001,5003,40,0},
@@ -138,47 +138,17 @@ int altaMicro (eMicro micros[],int tamM,eEmpresa empresas[],int tamE,eTipo tipos
         buscarMicroLibre (micros,tamM,&indice);
         if(indice != -1){
             //INGRESO DE DATOS
-            listarEmpresas(empresas,tamE);
-            printf("Ingrese el ID de la empresa \n");
-            scanf("%d",&microNuevo.idEmpresa);
-            fflush(stdin);
-
-            while(!validarEmpresa(empresas,tamE,microNuevo.idEmpresa)){
-                printf("Error en la ID de la empresa.Vuelva a ingresar \n");
-                scanf("%d",&microNuevo.idEmpresa);
-                fflush(stdin);
-            }
-
-            listarTipos(tipos,tamT);
-            printf("Ingrese el ID del tipo \n");
-            scanf("%d",&microNuevo.idTipo);
-            fflush(stdin);
-
-            while(!validarTipo(tipos,tamT,microNuevo.idTipo)){
-                printf("Error en la ID del color.Vuelva a ingresar \n");
-                scanf("%d",&microNuevo.idTipo);
-                fflush(stdin);
-            }
-
-            system("cls");
-
-            printf("Ingrese la capacidad del micro,numero entre 1 y 50 \n");
-            scanf("%d",&microNuevo.capacidad);
-            fflush(stdin);
-
-            while(microNuevo.capacidad < 1 || microNuevo.capacidad > 50){
-                printf("Error en la capacidad del micro.Vuelva a ingresar \n");
-                scanf("%d",&microNuevo.capacidad);
-                fflush(stdin);
-            }
-
-            system("cls");
-
-            microNuevo.isEmpty = 0;
-            microNuevo.id = *pId;
-            micros[indice] = microNuevo;
-            (*pId)++;
-            todoOk = 1;
+            if(pedirEmpresa(empresas,tamE,&microNuevo.idEmpresa) &&
+               pedirTipos(tipos,tamT,&microNuevo.idTipo)&&
+               pedirCapacidad(&microNuevo.capacidad)){
+                system("cls");
+                microNuevo.isEmpty = 0;
+                microNuevo.id = *pId;
+                micros[indice] = microNuevo;
+                (*pId)++;
+                todoOk = 1;
+            }else
+                printf("Error en el ingreso de datos para el alta de micros \n");
         }else{
             printf("No hay espacio disponible para el alta de micros\n");
         }
@@ -228,12 +198,7 @@ int modificarMicro (eMicro micros[],int tamM,eEmpresa empresas[],int tamE,eTipo 
     char respuestaModificar='n';
 
     if(micros && empresas && tipos && tamM >0 && tamE >0 && tamT >0 ){
-        listarMicros(micros,tamM,empresas,tamE,tipos,tamT);
-        printf("Ingrese el ID del micro a modificar ");
-        scanf("%d",&idIngresado);
-        fflush(stdin);
-
-        if(buscarMicro (micros,tamM,idIngresado,&indice)){
+        if(pedirMicro(micros,empresas,tipos,tamM,tamE,tamT,&idIngresado,&indice)){
             if(indice != -1){
                 printf("-------------------------------------------------------\n");
                 printf("ID\t   Empresa\t  Tipo\t   \tCapacidad\n");
@@ -243,29 +208,16 @@ int modificarMicro (eMicro micros[],int tamM,eEmpresa empresas[],int tamE,eTipo 
                 do{
                     switch(menuModificar()){
                         case '1':
-                            printf("Ingrese la capacidad del micro,numero entre 1 y 50 \n");
-                            scanf("%d",&micros[indice].capacidad);
-                            fflush(stdin);
-
-                            while(micros[indice].capacidad < 1 || micros[indice].capacidad > 50){
-                                printf("Error en la capacidad del micro.Vuelva a ingresar \n");
-                                scanf("%d",&micros[indice].capacidad);
-                                fflush(stdin);
-                            }
-                            printf("Capacidad modificada de manera exitosa \n");
+                            if(pedirCapacidad(&micros[indice].capacidad))
+                                printf("Capacidad modificada de manera exitosa \n");
+                            else
+                                printf("No se pudo modificar la capacidad \n");
                             break;
                         case '2':
-                            listarTipos(tipos,tamT);
-                            printf("Ingrese el ID del tipo \n");
-                            scanf("%d",&micros[indice].idTipo);
-                            fflush(stdin);
-
-                            while(!validarTipo(tipos,tamT,micros[indice].idTipo)){
-                                printf("Error en la ID del tipo.Vuelva a ingresar \n");
-                                scanf("%d",&micros[indice].idTipo);
-                                fflush(stdin);
-                            }
-                            printf("Tipo modificado de manera exitosa \n");
+                            if(pedirTipos(tipos,tamT,&micros[indice].idTipo))
+                                printf("Tipo modificado de manera exitosa \n");
+                            else
+                                printf("No se pudo modificar el tipo \n");
                             break;
                         case 'S':
                             respuestaModificar = 'S';
@@ -296,11 +248,7 @@ int bajaMicro (eMicro micros[],int tamM,eEmpresa empresas[],int tamE,eTipo tipos
     char respuestaBorrado='n';
 
     if(micros && empresas && tipos && tamE >0 && tamM >0 && tamT >0 ){
-        listarMicros(micros,tamM,empresas,tamE,tipos,tamT);
-        printf("Ingrese la ID a dar de baja: ");
-        scanf("%d",&idIngresado);
-        fflush(stdin);
-        if(buscarMicro(micros,tamM,idIngresado,&indice)){
+        if(pedirMicro(micros,empresas,tipos,tamM,tamE,tamT,&idIngresado,&indice)){
             if(indice != -1){
                 printf("-------------------------------------------------------\n");
                 printf("ID\t   Empresa\t  Tipo\t   \tCapacidad\n");
@@ -323,10 +271,290 @@ int bajaMicro (eMicro micros[],int tamM,eEmpresa empresas[],int tamE,eTipo tipos
         }else{
             printf("\nProblema al buscar el micro \n");
         }
-
     }else{
         printf("\nError en los parametros de la baja \n");
     }
 
     return todoOk;
 }
+
+
+int pedirMicro(eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT,int* pIdMicro,int* pIndice){
+    int todoOk = 0;
+    int indiceMicro;
+    if(empresas && micros && tipos && pIdMicro && pIndice && tamM >0 && tamE >0 && tamT > 0){
+        listarMicros (micros,tamM,empresas,tamE,tipos,tamT);
+        printf("Ingrese el ID del micro \n");
+        scanf("%d",pIdMicro);
+        fflush(stdin);
+
+        buscarMicro(micros,tamM,*pIdMicro,&indiceMicro);
+
+        while(indiceMicro == -1){
+            printf("No exite el micro con la ID: %d \n",*pIdMicro);
+            printf("Ingrese el ID del micro \n");
+            scanf("%d",pIdMicro);
+            fflush(stdin);
+
+            buscarMicro(micros,tamM,*pIdMicro,&indiceMicro);
+        }
+        *pIdMicro = micros[indiceMicro].id;
+        *pIndice = indiceMicro;
+        todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int pedirCapacidad(int* capacidad){
+    int todoOk = 0;
+    if(capacidad){
+        system("cls");
+        printf("Ingrese la capacidad del micro,numero entre 1 y 50 \n");
+        scanf("%d",capacidad);
+        fflush(stdin);
+
+        while((*capacidad) < 1 || (*capacidad) > 50){
+            printf("Error en la capacidad del micro.Vuelva a ingresar \n");
+            scanf("%d",capacidad);
+            fflush(stdin);
+        }
+        todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int mostrarMicrosPorEmpresa (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT){
+    int todoOk = 0;
+    int idEmpresa;
+
+    if(micros && empresas && tipos && tamM >0 && tamT >0 && tamE >0){
+        eMicro microsAux [tamM];
+        inicializarMicros(microsAux,tamM);
+        listarEmpresas(empresas,tamE);
+        printf("Ingrese el ID de la empresa \n");
+        scanf("%d",&idEmpresa);
+        fflush(stdin);
+
+        while(!validarEmpresa(empresas,tamE,idEmpresa)){
+            printf("Error en la ID de la empresa.Vuelva a ingresar \n");
+            scanf("%d",&idEmpresa);
+            fflush(stdin);
+        }
+
+        for(int i=0;i<tamM;i++){
+            if(micros[i].idEmpresa == idEmpresa && !micros[i].isEmpty){
+                microsAux[i] = micros[i];
+            }
+        }
+
+        listarMicros(microsAux,tamM,empresas,tamE,tipos,tamT);
+        printf("\n\n");
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int mostrarMicrosPorTipo (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT){
+    int todoOk = 0;
+    int idTipo;
+
+    if(micros && empresas && tipos && tamM >0 && tamT >0 && tamE >0){
+        eMicro microsAux [tamM];
+        inicializarMicros(microsAux,tamM);
+        listarTipos(tipos,tamT);
+        printf("Ingrese el ID del tipo \n");
+        scanf("%d",&idTipo);
+        fflush(stdin);
+
+        while(!validarTipo(tipos,tamT,idTipo)){
+            printf("Error en la ID del tipo.Vuelva a ingresar \n");
+            scanf("%d",&idTipo);
+            fflush(stdin);
+        }
+
+        for(int i=0;i<tamM;i++){
+            if(micros[i].idTipo == idTipo && !micros[i].isEmpty){
+                microsAux[i] = micros[i];
+            }
+        }
+
+        listarMicros(microsAux,tamM,empresas,tamE,tipos,tamT);
+        printf("\n\n");
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int mostrarPromedioVipPorEmpresa (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT){
+    int todoOk = 0;
+    int idEmpresa;
+    float contadorVip=0;
+    float contadorTotal=0;
+    char descripcionVip [20];
+    char descripcionEmpresa[20];
+    float promedio;
+
+    if(micros && empresas && tipos && tamM >0 && tamT >0 && tamE >0){
+        eMicro microsAux [tamM];
+        inicializarMicros(microsAux,tamM);
+        listarEmpresas(empresas,tamE);
+        printf("Ingrese el ID de la empresa \n");
+        scanf("%d",&idEmpresa);
+        fflush(stdin);
+
+        while(!validarEmpresa(empresas,tamE,idEmpresa)){
+            printf("Error en la ID de la empresa.Vuelva a ingresar \n");
+            scanf("%d",&idEmpresa);
+            fflush(stdin);
+        }
+
+        for(int i=0;i<tamM;i++){
+            if(micros[i].idEmpresa == idEmpresa && !micros[i].isEmpty){
+                contadorTotal++;
+                cargarDescripcionTipo(tipos,tamT,micros[i].idTipo,descripcionVip);
+                if(!strcmp(descripcionVip,"Vip")){
+                    contadorVip++;
+                }
+            }
+        }
+        if(contadorTotal)
+            promedio = (contadorVip/contadorTotal);
+
+        cargarDescripcionEmpresa(empresas,tamE,idEmpresa,descripcionEmpresa);
+        printf("El promedio VIP de la empresa %s es: %0.2f \n",descripcionEmpresa,promedio);
+        printf("\n\n");
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int mostrarMicrosPorEmpresas (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT){
+    int todoOk = 0;
+    char descripcionMarca[20];
+    int hayMicros;
+
+    if(micros && empresas && tipos && tamM >0 && tamT >0 && tamE >0){
+        for(int i=0;i<tamE;i++){
+            hayMicros = 0;
+            printf("     ***LISTADO DE MICROS DE LA EMPRESA %s ***\n",empresas[i].descripcion);
+            printf("-------------------------------------------------------\n");
+            printf("ID\t   Empresa\t  Tipo\t   \tCapacidad\n");
+            printf("-------------------------------------------------------\n");
+            for(int j=0;j<tamM;j++){
+                if(!micros[j].isEmpty && empresas[i].id == micros[j].idEmpresa){
+                   mostrarMicro(micros[j],empresas,tamE,tipos,tamT);
+                   hayMicros=1;
+                }
+            }
+            if(!hayMicros)
+                printf("No hay micros de la empresa %s \n",empresas[i].descripcion);
+            printf("\n\n");
+        }
+
+
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+
+int mostrarEmpresasConMasCapacidad (eMicro micros[],eEmpresa empresas[],int tamM,int tamE){
+    int todoOk = 0;
+    int contadoresEmpresas[tamE];
+    int descripcionEmpresas[tamE][20];
+    int indice = 0;
+    int cantidadEmpresaMayor;
+
+    if(micros && empresas  && tamM > 0 && tamE > 0){
+        for(int i=0;i<tamE;i++){
+            contadoresEmpresas[i]=0;
+        }
+        for(int i=0;i<tamM;i++){
+            if(buscarEmpresa(empresas,tamE,micros[i].idEmpresa,&indice) && !micros[i].isEmpty){
+                cargarDescripcionEmpresa(empresas,tamE,micros[i].idEmpresa,descripcionEmpresas[indice]);
+                contadoresEmpresas[indice] += (micros[i].capacidad);
+            }
+        }
+        cantidadEmpresaMayor = contadoresEmpresas[0];
+        for(int i=1;i<tamE;i++){
+            if(contadoresEmpresas[i] > cantidadEmpresaMayor){
+                cantidadEmpresaMayor = contadoresEmpresas[i];
+            }
+        }
+
+        printf("Las empresas de micros con mas capacidad son: \n");
+        for(int i=0;i<tamE;i++){
+            if(contadoresEmpresas[i] == cantidadEmpresaMayor){
+                printf("-%s \n",descripcionEmpresas[i]);
+            }
+        }
+        printf("Con una capacidad de : %d \n",cantidadEmpresaMayor);
+        printf("\n\n");
+
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int mostrarEmpresaConMenosMicros (eMicro micros[],eEmpresa empresas[],int tamM,int tamE){
+    int todoOk = 0;
+    int contadorMicros[tamE];
+    int descripcionEmpresas[tamE][20];
+    int indice = 0;
+    int cantidadEmpresaMenor;
+
+    if(micros && empresas  && tamM > 0 && tamE > 0){
+        for(int i=0;i<tamE;i++){
+            contadorMicros[i]=0;
+        }
+        for(int i=0;i<tamM;i++){
+            if(buscarEmpresa(empresas,tamE,micros[i].idEmpresa,&indice) && !micros[i].isEmpty){
+                cargarDescripcionEmpresa(empresas,tamE,micros[i].idEmpresa,descripcionEmpresas[indice]);
+                contadorMicros[indice] ++;
+            }
+        }
+        cantidadEmpresaMenor = contadorMicros[0];
+        for(int i=1;i<tamE;i++){
+            if(contadorMicros[i] < cantidadEmpresaMenor){
+                cantidadEmpresaMenor = contadorMicros[i];
+            }
+        }
+
+        printf("Las empresas de micros con menos cantidad de micros son: \n");
+        for(int i=0;i<tamE;i++){
+            if(contadorMicros[i] == cantidadEmpresaMenor){
+                printf("-%s \n",descripcionEmpresas[i]);
+            }
+        }
+        printf("Con una cantidad de micros de %d \n",cantidadEmpresaMenor);
+        printf("\n\n");
+
+       todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int validarMicro (eMicro micros[],int tamM,int id){
+    int todoOk = 0;
+    int indice;
+    if(micros && tamM > 0){
+        buscarMicro(micros,tamM,id,&indice);
+        if(indice != -1)
+            todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+
+
+
+

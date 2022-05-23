@@ -1,37 +1,39 @@
 # depslib dependency file v1.0
-1652281372 source:c:\users\pacug\desktop\programacioni\parcial\destino.c
+1653315004 source:c:\users\pacug\desktop\programacioni\parcial\destino.c
 	"destino.h"
 	"stdlib.h"
 	"stdio.h"
+	<string.h>
 
-1652281402 source:c:\users\pacug\desktop\programacioni\parcial\empresa.c
+1653308496 source:c:\users\pacug\desktop\programacioni\parcial\empresa.c
 	"empresa.h"
 	"stdlib.h"
 	"stdio.h"
 	"string.h"
 
-1652277536 source:c:\users\pacug\desktop\programacioni\parcial\fecha.c
+1653312266 source:c:\users\pacug\desktop\programacioni\parcial\fecha.c
 	"fecha.h"
+	<stdio.h>
 
-1652281507 source:c:\users\pacug\desktop\programacioni\parcial\micro.c
+1653313789 source:c:\users\pacug\desktop\programacioni\parcial\micro.c
 	"micro.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1652281425 source:c:\users\pacug\desktop\programacioni\parcial\tipo.c
+1653267169 source:c:\users\pacug\desktop\programacioni\parcial\tipo.c
 	"tipo.h"
 	"string.h"
 	"stdlib.h"
 	"stdio.h"
 
-1652278777 source:c:\users\pacug\desktop\programacioni\parcial\viaje.c
+1653313140 source:c:\users\pacug\desktop\programacioni\parcial\viaje.c
 	"viaje.h"
 	<stdio.h>
 	<stdlib.h>
 
-1652278862 source:c:\users\pacug\desktop\programacioni\parcial\main.c
+1653315019 source:c:\users\pacug\desktop\programacioni\parcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -41,20 +43,29 @@
 	"micro.h"
 	"viaje.h"
 
-1652279663 c:\users\pacug\desktop\programacioni\parcial\empresa.h
+1653268220 c:\users\pacug\desktop\programacioni\parcial\empresa.h
 
-1652279970 c:\users\pacug\desktop\programacioni\parcial\tipo.h
+1653268306 c:\users\pacug\desktop\programacioni\parcial\tipo.h
 
-1652279372 c:\users\pacug\desktop\programacioni\parcial\destino.h
+1653314506 c:\users\pacug\desktop\programacioni\parcial\destino.h
 
-1652281306 c:\users\pacug\desktop\programacioni\parcial\micro.h
+1653314857 c:\users\pacug\desktop\programacioni\parcial\micro.h
 	"empresa.h"
 	"tipo.h"
 
-1652280684 c:\users\pacug\desktop\programacioni\parcial\viaje.h
+1653314430 c:\users\pacug\desktop\programacioni\parcial\viaje.h
 	"fecha.h"
 	"micro.h"
 	"destino.h"
 
-1652279782 c:\users\pacug\desktop\programacioni\parcial\fecha.h
+1653314575 c:\users\pacug\desktop\programacioni\parcial\fecha.h
+
+1653264444 source:c:\users\pacug\desktop\programacioni\parcial\validaciones.c
+	"validaciones.h"
+	<stdio.h>
+	<stdlib.h>
+
+1653264425 c:\users\pacug\desktop\programacioni\parcial\validaciones.h
+	"empresa.h"
+	"tipo.h"
 

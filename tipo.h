@@ -51,3 +51,14 @@ int cargarDescripcionTipo (eTipo tipos[],int tamT,int id,char descripcion[]);
  *
  */
 int validarTipo (eTipo tipos[],int tamT,int id);
+
+
+/** \brief pide al usuario que ingrese un ID de tipos valida
+ *
+ * \param eTipo tipos[], vector de tipos
+ * \param int tamT,tamaño del vector de tipos
+ * \param int* idTipo, puntero a entero donde se almacena la ID ingresada por el usuario
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int pedirTipos(eTipo tipos[],int tamT,int* idTipo);

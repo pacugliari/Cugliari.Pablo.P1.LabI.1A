@@ -87,3 +87,90 @@ int listarViajes (eViaje viajes[],int tamV,eMicro micros[],int tamM,eDestino des
 
 int buscarViajeLibre (eViaje viajes[],int tamV,int* pIndice);
 
+
+/** \brief muestra los campos del viaje pasado por parametro
+ *
+ * \param eViaje viaje,estructura del tipo viaje a mostrar
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarViaje(eViaje viaje,eMicro micros[],int tamM,eDestino destinos[],int tamD,eEmpresa empresas[],int tamE,eTipo tipos[],int tamT);
+
+
+/** \brief pide un micro e informa la suma de los precios (costo) de todos los viajes que realizo.
+ *
+ * \param eViaje viajes[],vector de viajes
+ * \param int tamE, tamanio del vector de empresas
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarImporteViajePorMicro (eViaje viajes[],int tamV,eMicro micros[],int tamM,eDestino destinos[],int tamD,eEmpresa empresas[],int tamE,eTipo tipos[],int tamT);
+
+
+/** \brief pide un destino y muestra los micros que viajaron a ese destino y en que fecha
+ *
+ * \param eViaje viajes[],vector de viajes
+ * \param int tamE, tamanio del vector de empresas
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarViajesPorDestino (eViaje viajes[],int tamV,eMicro micros[],int tamM,eDestino destinos[],int tamD,eEmpresa empresas[],int tamE,eTipo tipos[],int tamT);
+
+
+/** \brief pide una fecha y muestra todos los viajes realizados en la misma
+ *
+ * \param eViaje viajes[],vector de viajes
+ * \param int tamE, tamanio del vector de empresas
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarViajesPorFecha (eViaje viajes[],int tamV,eMicro micros[],int tamM,eDestino destinos[],int tamD,eEmpresa empresas[],int tamE,eTipo tipos[],int tamT);
+
+/** \brief pide un micro y muestra todos los viajes que hizo el mismo.
+ *
+ * \param eViaje viajes[],vector de viajes
+ * \param int tamE, tamanio del vector de empresas
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eDestino destinos[],vector de destinos
+ * \param int tamD, tamanio del vector de destinos
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarViajesPorMicro (eViaje viajes[],int tamV,eMicro micros[],int tamM,eDestino destinos[],int tamD,eEmpresa empresas[],int tamE,eTipo tipos[],int tamT);

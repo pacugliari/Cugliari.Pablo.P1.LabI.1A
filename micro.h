@@ -145,3 +145,116 @@ int ordenarMicrosPorEmpresaYCapacidad (eMicro micros[],int tamM,eEmpresa empresa
  *
  */
 char menuModificar ();
+
+
+/** \brief pide al usuario un ID de micro valido
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \param int* pIdMicro,puntero a entero donde se almacena el ID ingresado por el usuario
+ * \param int* pIndice, puntero a entero donde se almacena el indice del ID en el vector de micros, si no esta se almacena -1
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int pedirMicro(eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT,int* pIdMicro,int* pIndice);
+
+/** \brief pide al usuario que ingrese una capacidad valida
+ *
+ * \param int* capacidad, puntero a entero donde se almacena la capacidad ingresada por el usuario
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int pedirCapacidad(int* capacidad);
+
+
+/** \brief muestra micros de la empresa seleccionada por el usuario
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarMicrosPorEmpresa (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT);
+
+/** \brief muestra los micros de un tipo seleccionado.
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarMicrosPorTipo (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT);
+
+/** \brief informa el promedio de micros de tipo Vip sobre el total de micros de una empresa
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarPromedioVipPorEmpresa (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT);
+
+/** \brief muestra un listado de los micros separados por empresa.
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarMicrosPorEmpresas (eMicro micros[],eEmpresa empresas[],eTipo tipos[],int tamM,int tamE,int tamT);
+
+/** \brief informa la o las empresas que pueden transportar mas pasajeros (mayor acumulador de capacidades de sus micros)
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarEmpresasConMasCapacidad (eMicro micros[],eEmpresa empresas[],int tamM,int tamE);
+
+/** \brief muestra la empresa con menos cantidad de micros
+ *
+ * \param eMicro micros[],vector de micros
+ * \param int tamM, tamanio del vector de micros
+ * \param eEmpresa empresas[],vector de empresas
+ * \param int tamE, tamanio del vector de empresas
+ * \param eTipo tipos[],vector de tipos
+ * \param int tamT, tamanio del vector de tipos
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int mostrarEmpresaConMenosMicros (eMicro micros[],eEmpresa empresas[],int tamM,int tamE);
+
+/** \brief valida que la id pasada por parametro este dada de alta
+ *
+ * \param eMicro micros[], vector de micros
+ * \param int tamM,tamaño del vector de micros
+ * \param int id, id que se desea saber si es valida
+ * \return id valida retorna 1, id invalida retorna 0
+ *
+ */
+int validarMicro (eMicro micros[],int tamM,int id);

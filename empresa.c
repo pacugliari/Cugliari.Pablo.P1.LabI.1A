@@ -60,3 +60,25 @@ int validarEmpresa (eEmpresa empresas[],int tamE,int id){
     }
     return todoOk;
 }
+
+
+int pedirEmpresa(eEmpresa empresas[],int tamE,int* idEmpresa){
+    int todoOk = 0;
+    if(empresas && tamE > 0 && idEmpresa){
+        listarEmpresas(empresas,tamE);
+        printf("Ingrese el ID de la empresa \n");
+        scanf("%d",idEmpresa);
+        fflush(stdin);
+
+        while(!validarEmpresa(empresas,tamE,*idEmpresa)){
+            printf("Error en la ID de la empresa.Vuelva a ingresar \n");
+            scanf("%d",idEmpresa);
+            fflush(stdin);
+        }
+
+       todoOk = 1;
+    }
+    return todoOk ;
+}
+
+

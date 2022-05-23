@@ -1,4 +1,6 @@
 #include "fecha.h"
+#include <stdio.h>
+
 
 //MESES CON 31- ENERO-MARZO-MAYO-JULIO-AGOSTO-OCTUBRE-DICIEMBRE
 //MESES CON 30 --ABRIL-JUNIO-SEPTIEMBRE-NOVIEMBRE
@@ -45,4 +47,37 @@ int validarFecha(eFecha fecha){
 
     return todoOk;
 
+}
+
+
+
+int pedirFecha(eFecha* fecha){
+    int todoOk=0;
+    eFecha aux;
+    if(fecha){
+        printf("Ingrese la fecha ej: XX/XX/XXXX: ");
+        scanf("%d/%d/%d",&(aux.dia),&(aux.mes),&(aux.anio));
+        fflush(stdin);
+
+        while(!validarFecha(aux)){
+            printf("Error en la fecha.Ingrese la fecha ej: XX/XX/XXXX: ");
+            scanf("%d/%d/%d",&(aux.dia),&(aux.mes),&(aux.anio));
+            fflush(stdin);
+        }
+        todoOk = 1;
+        (*fecha) = aux;
+    }
+    return todoOk;
+
+}
+
+
+int compararFechas(eFecha fecha1,eFecha fecha2){
+    int sonIguales = 0;
+
+    if(fecha1.anio == fecha2.anio && fecha1.mes == fecha2.mes && fecha1.dia==fecha2.dia){
+        sonIguales = 1;
+    }
+
+    return sonIguales;
 }

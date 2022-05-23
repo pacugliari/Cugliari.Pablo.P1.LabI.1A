@@ -60,3 +60,22 @@ int validarTipo (eTipo tipos[],int tamT,int id){
     }
     return todoOk;
 }
+
+
+int pedirTipos(eTipo tipos[],int tamT,int* idTipo){
+    int todoOk = 0;
+    if(tipos && tamT >0 && idTipo){
+        listarTipos(tipos,tamT);
+        printf("Ingrese el ID del tipo \n");
+        scanf("%d",idTipo);
+        fflush(stdin);
+
+        while(!validarTipo(tipos,tamT,*idTipo)){
+            printf("Error en la ID del color.Vuelva a ingresar \n");
+            scanf("%d",idTipo);
+            fflush(stdin);
+        }
+        todoOk = 1;
+    }
+    return todoOk;
+}

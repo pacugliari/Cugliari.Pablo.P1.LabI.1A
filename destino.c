@@ -1,6 +1,7 @@
 #include "destino.h"
 #include "stdlib.h"
 #include "stdio.h"
+#include <string.h>
 
 
 int listarDestinos (eDestino destinos[],int tamD){
@@ -46,6 +47,37 @@ int validarDestino (eDestino destinos[],int tamD,int id){
         buscarDestino (destinos,tamD,id,&indice);
         if(indice != -1)
             todoOk = 1;
+    }
+    return todoOk;
+}
+
+
+int pedirDestino(eDestino destinos[],int tamD,int* idDestino){
+    int todoOk=0;
+    if(destinos && tamD >0 && idDestino){
+        listarDestinos(destinos,tamD);
+        printf("Ingrese el ID del destino \n");
+        scanf("%d",idDestino);
+        fflush(stdin);
+
+        while(!validarDestino(destinos,tamD,*idDestino)){
+            printf("Error en la ID del destino.Vuelva a ingresar \n");
+            scanf("%d",idDestino);
+            fflush(stdin);
+        }
+        todoOk = 1;
+    }
+    return todoOk;
+
+}
+
+
+int cargarDescripcionDestino (eDestino destinos[],int tamD,int id,char descripcion[]){
+    int todoOk = 0;
+    int indice;
+    if(destinos && tamD >0 && descripcion && buscarDestino(destinos,tamD,id,&indice)){
+        strcpy(descripcion,destinos[indice].descripcion);
+        todoOk = 1;
     }
     return todoOk;
 }

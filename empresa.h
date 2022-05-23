@@ -49,3 +49,13 @@ int buscarEmpresa (eEmpresa empresas[],int tamE,int id,int* pIndice);
  *
  */
 int validarEmpresa (eEmpresa empresas[],int tamE,int id);
+
+/** \brief pide al usuario que ingrese un ID de empresa valido
+ *
+ * \param eEmpresa empresas[], vector de empresas
+ * \param int tamE,tamaño del vector de empresas
+ * \param int* idEmpresa,puntero a entero donde se almacena la ID de la empresa ingresada
+ * \return si los parametros son correctos retorna 1 , si los parametros son incorrectos retorna 0
+ *
+ */
+int pedirEmpresa(eEmpresa empresas[],int tamE,int* idEmpresa);
